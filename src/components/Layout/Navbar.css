@@ -1,0 +1,127 @@
+.navbar {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.nav-pill {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 50px;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--glass-shadow);
+    width: auto;
+    min-width: 600px;
+    max-width: 1200px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
+}
+
+.nav-pill.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: var(--shadow-hover);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-header);
+    letter-spacing: -0.5px;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dot {
+    color: var(--secondary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.nav-item a {
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    padding: 8px 20px;
+    border-radius: 25px;
+    display: block;
+}
+
+.nav-item a:hover {
+    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-item a.active {
+    background: var(--gradient-main);
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.menu-icon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+@media screen and (max-width: 960px) {
+    .nav-pill {
+        border-radius: 20px;
+        padding: 15px 25px;
+        min-width: 90%;
+        justify-content: space-between;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: var(--shadow-hover);
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        gap: 20px;
+        border: 1px solid white;
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+}

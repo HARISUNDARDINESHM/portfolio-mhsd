@@ -1,0 +1,178 @@
+/* Google Fonts */
+/* Using Poppins (Geometric/Clean) and Montserrat (Caps headers) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Holographic / Aurora Palette */
+  --primary-color: #6c5ce7;
+  /* Deep Lavender */
+  --secondary-color: #00cec9;
+  /* Cyan/Teal */
+  --accent-color: #fd79a8;
+  /* Soft Pink */
+
+  /* Backgrounds */
+  --bg-color: #f0f2f5;
+  --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  /* Fallback */
+  --aurora-gradient: linear-gradient(125deg,
+      #ffffff 0%,
+      #f3e7e9 30%,
+      #e3eeff 60%,
+      #e7f0fd 100%);
+
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --glass-blur: blur(10px);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
+
+  /* Card & Text */
+  --card-bg: rgba(255, 255, 255, 0.4);
+  --text-main: #2d3436;
+  --text-light: #636e72;
+
+  /* Gradients */
+  --gradient-main: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  --gradient-accent: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+
+  /* Shadows */
+  --shadow-soft: 0 10px 20px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 15px 30px rgba(108, 92, 231, 0.15);
+
+  /* Fonts & Radius */
+  --font-header: 'Montserrat', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --radius: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--aurora-gradient);
+  background-attachment: fixed;
+  /* Parallax-like effect */
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom Scrollbar - Minimal & Clean */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(108, 92, 231, 0.3);
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(108, 92, 231, 0.6);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-header);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .section {
+    padding: 4rem 10px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.section {
+  padding: 6rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Glass Section Title */
+.section-title {
+  font-family: var(--font-header);
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  text-align: center;
+  color: var(--text-main);
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+  align-self: center;
+  z-index: 10;
+
+  /* Title Texture */
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 6px;
+  background: var(--gradient-accent);
+  margin: 10px auto 0;
+  border-radius: 10px;
+  opacity: 0.7;
+}

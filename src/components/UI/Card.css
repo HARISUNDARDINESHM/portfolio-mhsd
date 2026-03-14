@@ -1,0 +1,39 @@
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    /* Sharper corners */
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    clip-path: polygon(0 0,
+            100% 0,
+            100% calc(100% - 20px),
+            calc(100% - 20px) 100%,
+            0 100%);
+    /* Tech-like cut corner */
+}
+
+.card:hover {
+    box-shadow: var(--neon-glow);
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), transparent);
+    opacity: 0.5;
+}
+
+.card h3 {
+    font-family: var(--header-font);
+    letter-spacing: 1px;
+}

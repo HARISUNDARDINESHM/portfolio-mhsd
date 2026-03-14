@@ -1,0 +1,62 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp, FaFileAlt } from "react-icons/fa";
+import img1 from "../../assets/mhsd_image1.jpg";
+import img2 from "../../assets/mhsd_image2.jpg";
+import Button from "../UI/Button";
+import "./Hero.css";
+
+const Hero = () => {
+    const [currentImg, setCurrentImg] = useState(0);
+    const images = [img1, img2];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImg((prev) => (prev + 1) % images.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [images.length]);
+
+    return (
+        <section className="hero section" id="home">
+            <div className="hero-container container">
+                <motion.div
+                    className="hero-content"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <span className="hero-subtitle">Welcome to my world</span>
+                    <h1>Hello, I'm <br /><span className="highlight">Hari Sundar</span></h1>
+                    <p>To secure a position in the software industry where skills can be utilized, new technologies can be quickly adapted, and contribution can be made to innovative projects while continuously enhancing knowledge.</p>
+
+                    <div className="social-icons">
+                        <a href="https://www.linkedin.com/in/hari-sundar-dinesh-m-00515725a" target="_blank" rel="noreferrer"><FaLinkedin /></a>
+                        <a href="https://github.com/HARISUNDARDINESHM" target="_blank" rel="noreferrer"><FaGithub /></a>
+                        <a href="mailto:sundarharidinesh@gmail.com"><FaEnvelope /></a>
+                        <a href="https://wa.me/919894853160" target="_blank" rel="noreferrer"><FaWhatsapp /></a>
+                    </div>
+
+                    <div className="action-buttons">
+                        <Button variant="primary" onClick={() => window.open('https://drive.google.com/drive/folders/1TwCJuAkaOD8EaPzrAlQgMwS7E0LN91z7', '_blank')}>Download CV</Button>
+                        <Button variant="secondary">Contact Me</Button>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    className="hero-image"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                    <div className="blob-bg"></div>
+                    <div className="img-wrapper-circle">
+                        <img src={images[currentImg]} alt="Hari profile" className="profile-img" />
+                    </div>
+                </motion.div>
+            </div>
+        </section>
+    );
+};
+
+export default Hero;

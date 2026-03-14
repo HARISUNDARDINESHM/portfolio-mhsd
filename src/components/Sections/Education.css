@@ -1,0 +1,88 @@
+.education-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.edu-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s ease;
+}
+
+.edu-card:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: var(--shadow-hover);
+}
+
+.edu-icon-wrapper {
+    font-size: 2rem;
+    color: white;
+    background: var(--gradient-main);
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-soft);
+    transform: none;
+    /* Removed diamond rotation */
+}
+
+.edu-icon-wrapper svg {
+    transform: none;
+}
+
+.edu-content {
+    flex: 1;
+}
+
+.edu-content h3 {
+    margin-bottom: 5px;
+    color: var(--text-main);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.institution {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-family: var(--font-header);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.edu-details {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    padding-left: 0;
+}
+
+.edu-details li {
+    list-style: none;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.edu-details li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+}
