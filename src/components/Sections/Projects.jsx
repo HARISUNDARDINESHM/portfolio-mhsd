@@ -41,6 +41,34 @@ const Projects = () => {
                 "Built with Next.js, Express, and MySQL"
             ],
             githubLink: "https://github.com/HARISUNDARDINESHM/mediConnect-web"
+        },
+        {
+            title: "NEARSERVICE",
+            description: "Local Service Finder Application - An application to find and book nearby service providers.",
+            icon: <FaProjectDiagram />,
+            features: [
+                "Customers can raise service requests",
+                "Providers manage and respond to requests",
+                "Efficient service booking system",
+                "Built with React, Express, and MySQL"
+            ],
+            githubLink: "https://github.com/HARISUNDARDINESHM/nearService"
+        },
+        {
+            title: "ourAI",
+            description: "Smart Assessment System - AI-based MCQ generator that creates topic-specific questions to test and improve student knowledge.",
+            icon: <FaProjectDiagram />, // Reusing icon
+            features: [
+                "Topic Summarization: Detailed definitions and complexity analysis",
+                "Real-time Scoring: Instant results for quizzes",
+                "One-Click Download: Export study guides to .docx format",
+                "AI Interviewer: Practice technical questions with an AI mentor",
+                "Built with React, Node.js, Express, Gemini AI, and MongoDB"
+            ],
+            githubLinks: [
+                { label: "Frontend", url: "https://github.com/HARISUNDARDINESHM/ourAI-Frontend" },
+                { label: "Backend", url: "https://github.com/HARISUNDARDINESHM/ourAI-Backend" }
+            ]
         }
     ];
 
@@ -58,15 +86,20 @@ const Projects = () => {
                         <ul className="project-features">
                             {project.features.map((feature, idx) => (
                                 <li key={idx}>{feature}</li>
-                            ))}
+                             ))}
                         </ul>
-                        {project.githubLink && (
-                            <div className="project-links">
+                        <div className="project-links">
+                            {project.githubLink && (
                                 <a href={project.githubLink} target="_blank" rel="noreferrer" className="github-btn">
                                     <FaGithub /> View Code
                                 </a>
-                            </div>
-                        )}
+                            )}
+                            {project.githubLinks && project.githubLinks.map((link, idx) => (
+                                <a key={idx} href={link.url} target="_blank" rel="noreferrer" className="github-btn">
+                                    <FaGithub /> {link.label}
+                                </a>
+                            ))}
+                        </div>
                     </Card>
                 ))}
             </div>

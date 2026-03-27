@@ -14,7 +14,7 @@ const Footer = () => {
                     <a href="https://wa.me/919894853160" target="_blank" rel="noreferrer"><FaWhatsapp /></a>
                 </div>
                 <div className="copyright">
-                    &copy; 2025 Hari Sundar Dinesh M. All Rights Reserved.
+                    &copy; 2026 Hari Sundar Dinesh M. All Rights Reserved.
                 </div>
             </div>
         </footer>

@@ -377,6 +377,9 @@
       gap: 25px;
       margin-top: 30px;
     }
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
     
     /* Card Styling */
     .card {
@@ -655,7 +658,7 @@
       .intro h2 { font-size: 1.8rem; }
       nav ul { gap: 15px; }
       .card-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
       }
       .action-buttons {
         justify-content: center;
@@ -994,7 +997,7 @@
   <!-- Projects -->
   <section class="section" id="projects">
     <h2><i class="fas fa-project-diagram"></i> Projects</h2>
-    <div class="card-container">
+    <div class="card-container projects-grid">
       <div class="card">
         <div class="card-icon">
           <i class="fas fa-calendar-check"></i>
@@ -1024,6 +1027,55 @@
             <li>Automated reporting and analytics</li>
             <li>User-friendly interface for educators</li>
             <li>Data export capabilities</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-notes-medical"></i>
+        </div>
+        <div class="card-content">
+          <h3>MediConnect</h3>
+          <p>A Next.js, Express, and MySQL-based e-commerce platform for medicines and consultations.</p>
+          <ul>
+            <li>E-commerce platform for medicines</li>
+            <li>Video call consultations with doctors</li>
+            <li>Lab test booking integration</li>
+            <li>Built with Next.js, Express, and MySQL</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <div class="card-content">
+          <h3>NEARSERVICE</h3>
+          <p>Local Service Finder Application - An application to find and book nearby service providers.</p>
+          <ul>
+            <li>Customers can raise service requests</li>
+            <li>Providers manage and respond to requests</li>
+            <li>Efficient service booking system</li>
+            <li>Built with React, Express, and MySQL</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="card-content">
+          <h3>ourAI</h3>
+          <p>Smart Assessment System - AI-based MCQ generator that creates topic-specific questions to test and improve student knowledge.</p>
+          <ul>
+            <li>Topic Summarization: Detailed definitions and complexity analysis</li>
+            <li>Real-time Scoring: Instant results for quizzes</li>
+            <li>One-Click Download: Export study guides to .docx format</li>
+            <li>AI Interviewer: Practice technical questions with an AI mentor</li>
+            <li>Built with React, Node.js, Express, Gemini AI, and MongoDB</li>
           </ul>
         </div>
       </div>
@@ -1096,7 +1148,7 @@
           <h3>B.Tech Information Technology</h3>
           <p><b>University College of Engineering, Nagercoil</b> (2022–2026)</p>
           <ul>
-            <li>Current CGPA: 8.50(upto 6th sem)</li>
+            <li>Current CGPA: 8.47(upto 7th sem)</li>
             <li>Relevant coursework: Data Structures, Algorithms, Web Development, Database Systems</li>
             <li>Participated in technical workshops and coding competitions</li>
           </ul>

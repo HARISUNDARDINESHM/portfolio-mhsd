@@ -21,7 +21,7 @@ const Contact = () => {
                             <FaEnvelope /> <a href="mailto:sundarharidinesh@gmail.com">sundarharidinesh@gmail.com</a>
                         </div>
                         <div className="contact-row">
-                            <FaMapMarkerAlt /> <span>80A Mutharamman Kovil Street, Kayalpatnam- 6282044</span>
+                            <FaMapMarkerAlt /> <span>80A Mutharamman Kovil Street, Kayalpatnam- 628204</span>
                         </div>
                     </div>
                 </Card>

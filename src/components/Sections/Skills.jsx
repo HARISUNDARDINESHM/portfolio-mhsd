@@ -35,7 +35,8 @@ const Skills = () => {
             category: "Databases",
             icon: <FaDatabase />,
             items: [
-                { name: "MySQL", level: 80 }
+                { name: "MySQL", level: 80 },
+                { name: "MongoDB", level: 50 }
             ]
         },
         {
