@@ -28,7 +28,8 @@ const Skills = () => {
             icon: <FaServer />, // Using FaServer for backend
             items: [
                 { name: "PHP", level: 65 },
-                { name: "Express.js", level: 60 }
+                { name: "Express.js", level: 60 },
+                { name: "Spring Boot", level: 50 }
             ]
         },
         {

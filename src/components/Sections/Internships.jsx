@@ -7,6 +7,20 @@ const Internships = () => {
     const internships = [
         {
             company: "AGILETRIBERS, Nagercoil",
+            role: "Fullstack Developer Intern",
+            period: "September 2025 - April 2026",
+            icon: <FaLaptop />,
+            details: [
+                "Long-Term Technical Impact: Completed an intensive 8-month internship, contributing to the end-to-end development of scalable web and mobile applications within an Agile environment.",
+                "Full-Stack Development: Engineered robust solutions using React.js, Node.js, and MySQL, ensuring seamless integration between complex frontend interfaces and backend systems.",
+                "High-Impact Project: Played a key role in developing a Leave Management System utilized by over 2,000 personnel, focusing on streamlining administrative workflows and improving system reliability.",
+                "AI & Innovation: Implemented advanced AI-driven features using the Gemini API and RAG (Retrieval-Augmented Generation) to enhance data retrieval and user interaction.",
+                "DevOps & Deployment: Managed the continuous integration and deployment (CI/CD) of applications across platforms including Netlify, Vercel, and Render.",
+                "Professional Recognition: Delivered high-quality code and MVP accelerators, contributing to projects that received formal appreciation for technical excellence and community impact."
+            ]
+        },
+        {
+            company: "AGILETRIBERS, Nagercoil",
             role: "Full Stack Web Development",
             period: "27 June 2025 - 26 July 2025",
             icon: <FaLaptop />,

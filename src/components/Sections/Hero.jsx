@@ -27,8 +27,8 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <span className="hero-subtitle">Welcome to my world</span>
-                    <h1>Hello, I'm <br /><span className="highlight">Hari Sundar</span></h1>
-                    <p>To secure a position in the software industry where skills can be utilized, new technologies can be quickly adapted, and contribution can be made to innovative projects while continuously enhancing knowledge.</p>
+                    <h1>Hello, I'm <br /><span className="highlight">Hari Sundar Dinesh M</span></h1>
+                    <p>Aspiring Full Stack Developer with hands-on experience building production-grade systems. Contributed to a system recognized by the Kanyakumari SP, now serving 2,000+ police officers. Proficient in React.js, Express.js, MySQL, and JWT-based auth. Passionate about scalable, impactful software.</p>
 
                     <div className="social-icons">
                         <a href="https://www.linkedin.com/in/hari-sundar-dinesh-m-00515725a" target="_blank" rel="noreferrer"><FaLinkedin /></a>
@@ -39,7 +39,6 @@ const Hero = () => {
 
                     <div className="action-buttons">
                         <Button variant="primary" onClick={() => window.open('https://drive.google.com/drive/folders/1TwCJuAkaOD8EaPzrAlQgMwS7E0LN91z7', '_blank')}>Download CV</Button>
-                        <Button variant="secondary">Contact Me</Button>
                     </div>
                 </motion.div>
 

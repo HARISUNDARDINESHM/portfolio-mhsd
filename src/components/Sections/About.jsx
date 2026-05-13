@@ -27,6 +27,17 @@ const About = () => {
         { name: "Playing cricket", icon: <FaGamepad /> }
     ];
 
+    const achievements = [
+        "SP Award – KK Police Weekoff System (2,000+ officers using that app)",
+        "200+ LeetCode problems solved",
+        "Class Representative – 3rd & 4th Year"
+    ];
+
+    const languages = [
+        "Tamil",
+        "English"
+    ];
+
 
     return (
         <section className="section" id="about">
@@ -57,6 +68,25 @@ const About = () => {
                         </div>
                     </Card>
 
+                    {/* Achievements */}
+                    <Card className="about-card" delay={0.4}>
+                        <h3><FaCertificate /> Achievements</h3>
+                        <ul style={{ textAlign: "left", paddingLeft: "20px", marginTop: "15px", lineHeight: "1.6" }}>
+                            {achievements.map((achievement, index) => (
+                                <li key={index} style={{ marginBottom: "8px" }}>{achievement}</li>
+                            ))}
+                        </ul>
+                    </Card>
+
+                    {/* Languages */}
+                    <Card className="about-card" delay={0.5}>
+                        <h3><FaLanguage /> Languages</h3>
+                        <div className="tag-cloud">
+                            {languages.map((language, index) => (
+                                <span className="tag" key={index}>{language}</span>
+                            ))}
+                        </div>
+                    </Card>
 
                 </div>
             </div>

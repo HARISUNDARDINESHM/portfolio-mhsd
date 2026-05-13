@@ -12,26 +12,26 @@
   /* Soft Pink */
 
   /* Backgrounds */
-  --bg-color: #f0f2f5;
-  --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  --bg-color: #050816;
+  --bg-gradient: linear-gradient(135deg, #050816 0%, #151030 100%);
   /* Fallback */
   --aurora-gradient: linear-gradient(125deg,
-      #ffffff 0%,
-      #f3e7e9 30%,
-      #e3eeff 60%,
-      #e7f0fd 100%);
+      #050816 0%,
+      #0a0f2b 30%,
+      #13103c 60%,
+      #1b124a 100%);
 
   /* Glassmorphism Variables */
-  --glass-bg: rgba(255, 255, 255, 0.25);
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-  --glass-blur: blur(10px);
-  --glass-highlight: rgba(255, 255, 255, 0.6);
+  --glass-bg: rgba(15, 15, 30, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --glass-blur: blur(12px);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
 
   /* Card & Text */
-  --card-bg: rgba(255, 255, 255, 0.4);
-  --text-main: #2d3436;
-  --text-light: #636e72;
+  --card-bg: rgba(20, 20, 35, 0.7);
+  --text-main: #f3f3f3;
+  --text-light: #aaa6c3;
 
   /* Gradients */
   --gradient-main: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
