@@ -5,7 +5,7 @@
     margin-top: 40px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
     .contact-container {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -24,6 +24,11 @@
 
     .contact-card h3 {
         font-size: 1.3rem;
+    }
+    
+    .contact-row {
+        word-break: break-word;
+        font-size: 0.95rem;
     }
 }
 
@@ -85,6 +90,7 @@
     padding: 10px;
     border-radius: 10px;
     transition: all 0.2s ease;
+    word-break: break-word;
 }
 
 .contact-row:hover {
