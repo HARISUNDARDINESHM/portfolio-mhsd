@@ -4,16 +4,9 @@ import './Card.css';
 
 const Card = ({ children, className = '', delay = 0 }) => {
     return (
-        <motion.div
-            className={`card ${className}`}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: delay }}
-            whileHover={{ y: -10, transition: { duration: 0.2 } }}
-        >
+        <div className={`card ${className}`}>
             {children}
-        </motion.div>
+        </div>
     );
 };
 

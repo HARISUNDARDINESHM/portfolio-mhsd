@@ -41,12 +41,6 @@
     box-shadow: var(--glass-shadow);
 }
 
-.project-card:hover {
-    transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.45);
-    box-shadow: var(--shadow-hover);
-    border-color: white;
-}
 
 .project-header {
     display: flex;

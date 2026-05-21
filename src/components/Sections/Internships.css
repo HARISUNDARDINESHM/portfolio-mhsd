@@ -48,11 +48,6 @@
     border-left: 4px solid var(--primary-color);
 }
 
-.internship-card:hover {
-    transform: translateX(10px);
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: var(--shadow-hover);
-}
 
 .card-icon-small {
     position: absolute;

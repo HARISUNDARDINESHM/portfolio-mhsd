@@ -18,11 +18,6 @@
     transition: all 0.3s ease;
 }
 
-.edu-card:hover {
-    transform: translateX(10px);
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: var(--shadow-hover);
-}
 
 .edu-icon-wrapper {
     font-size: 2rem;
