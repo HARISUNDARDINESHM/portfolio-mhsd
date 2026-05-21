@@ -1,7 +1,6 @@
 import React from "react";
 import { FaAward, FaCheckCircle, FaStar, FaExternalLinkAlt } from "react-icons/fa";
 import Card from "../UI/Card";
-import Tilt from "react-parallax-tilt";
 import "./FeaturedProject.css";
 
 // Importing the actual award images from the legacy folder
@@ -13,8 +12,8 @@ const FeaturedProject = () => {
         <section className="section" id="featured-project">
             <h2 className="section-title"><FaAward style={{ marginRight: '10px' }} /> Highlighted Project</h2>
             <div className="featured-container container">
-                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} transitionSpeed={2000} className="glass-card-3d">
-                    <Card className="featured-card inner-3d-element" delay={0.2} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                <div className="glass-card-3d" style={{ transformStyle: 'flat' }}>
+                    <Card className="featured-card" style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
                         <div className="featured-header">
                             <div className="featured-title-wrapper">
                                 <h3>REST - Police Week-Off Management System</h3>
@@ -107,7 +106,7 @@ const FeaturedProject = () => {
                             </div>
                         </div>
                     </Card>
-                </Tilt>
+                </div>
             </div>
         </section>
     );

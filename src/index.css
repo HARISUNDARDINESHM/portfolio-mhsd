@@ -54,11 +54,13 @@
 }
 
 html {
-  background: var(--aurora-gradient);
+  background-color: var(--bg-color);
+  background-image: var(--aurora-gradient);
   background-attachment: fixed;
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   min-height: 100dvh;
+  overscroll-behavior-y: none;
 }
 
 #root, .app {
