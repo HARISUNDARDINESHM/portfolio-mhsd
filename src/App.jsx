@@ -9,17 +9,19 @@ import Internships from './components/Sections/Internships'
 import Education from './components/Sections/Education'
 import Contact from './components/Sections/Contact'
 import Footer from './components/Layout/Footer'
-import StarsCanvas from './components/3D/Stars'
+import Background3D from './components/3D/Background3D'
+import ProfileModel from './components/3D/ProfileModel'
 import './index.css'
 import './App.css'
 
 function App() {
   return (
     <div className="app relative z-0">
-      <StarsCanvas />
+      <Background3D />
       <Navbar />
       <main>
         <Hero />
+        <ProfileModel />
         <About />
         <Skills />
         <FeaturedProject />

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaLaptopCode, FaGlobe, FaDatabase, FaMobileAlt, FaCode, FaServer } from "react-icons/fa";
 import Card from "../UI/Card";
+import Tilt from "react-parallax-tilt";
 import "./Skills.css";
 
 const Skills = () => {
@@ -54,28 +55,30 @@ const Skills = () => {
             <h2 className="section-title"><FaCode style={{ marginRight: '10px' }} /> Skills</h2>
             <div className="skills-container container">
                 {skillsData.map((category, index) => (
-                    <Card key={index} delay={index * 0.1} className="skill-card">
-                        <div className="card-icon">
-                            {category.icon}
-                        </div>
-                        <h3>{category.category}</h3>
-                        <div className="skill-list">
-                            {category.items.map((skill, idx) => (
-                                <div className="skill-item" key={idx}>
-                                    <div className="skill-info">
-                                        <span>{skill.name}</span>
-                                        <span>{skill.level}%</span>
+                    <Tilt key={index} tiltMaxAngleX={15} tiltMaxAngleY={15} transitionSpeed={2000} className="glass-card-3d">
+                        <Card delay={index * 0.1} className="skill-card inner-3d-element" style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                            <div className="card-icon">
+                                {category.icon}
+                            </div>
+                            <h3>{category.category}</h3>
+                            <div className="skill-list">
+                                {category.items.map((skill, idx) => (
+                                    <div className="skill-item" key={idx}>
+                                        <div className="skill-info">
+                                            <span>{skill.name}</span>
+                                            <span>{skill.level}%</span>
+                                        </div>
+                                        <div className="skill-bar-bg">
+                                            <div
+                                                className="skill-bar-fill"
+                                                style={{ width: `${skill.level}%` }}
+                                            ></div>
+                                        </div>
                                     </div>
-                                    <div className="skill-bar-bg">
-                                        <div
-                                            className="skill-bar-fill"
-                                            style={{ width: `${skill.level}%` }}
-                                        ></div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </Card>
+                                ))}
+                            </div>
+                        </Card>
+                    </Tilt>
                 ))}
             </div>
         </section>

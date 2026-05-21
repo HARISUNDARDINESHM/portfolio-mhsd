@@ -1,6 +1,7 @@
 import React from "react";
 import { FaProjectDiagram, FaCalendarCheck, FaUserCheck, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Card from "../UI/Card";
+import Tilt from "react-parallax-tilt";
 import "./Projects.css";
 
 const Projects = () => {
@@ -90,35 +91,37 @@ const Projects = () => {
             <h2 className="section-title"><FaProjectDiagram style={{ marginRight: '10px' }} /> Projects</h2>
             <div className="projects-container container">
                 {projects.map((project, index) => (
-                    <Card key={index} delay={index * 0.2} className="project-card">
-                        <div className="project-header">
-                            <div className="project-icon">{project.icon}</div>
-                            <h3>{project.title}</h3>
-                        </div>
-                        <p className="project-desc">{project.description}</p>
-                        <ul className="project-features">
-                            {project.features.map((feature, idx) => (
-                                <li key={idx}>{feature}</li>
-                             ))}
-                        </ul>
-                        <div className="project-links">
-                            {project.githubLink && (
-                                <a href={project.githubLink} target="_blank" rel="noreferrer" className="github-btn">
-                                    <FaGithub /> View Code
-                                </a>
-                            )}
-                            {project.liveLink && (
-                                <a href={project.liveLink} target="_blank" rel="noreferrer" className="github-btn" style={{ background: 'var(--primary-color)', color: '#fff' }}>
-                                    <FaExternalLinkAlt /> Live Demo
-                                </a>
-                            )}
-                            {project.githubLinks && project.githubLinks.map((link, idx) => (
-                                <a key={idx} href={link.url} target="_blank" rel="noreferrer" className="github-btn">
-                                    <FaGithub /> {link.label}
-                                </a>
-                            ))}
-                        </div>
-                    </Card>
+                    <Tilt key={index} tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
+                        <Card delay={index * 0.2} className="project-card inner-3d-element" style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                            <div className="project-header">
+                                <div className="project-icon">{project.icon}</div>
+                                <h3>{project.title}</h3>
+                            </div>
+                            <p className="project-desc">{project.description}</p>
+                            <ul className="project-features">
+                                {project.features.map((feature, idx) => (
+                                    <li key={idx}>{feature}</li>
+                                 ))}
+                            </ul>
+                            <div className="project-links">
+                                {project.githubLink && (
+                                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="github-btn">
+                                        <FaGithub /> View Code
+                                    </a>
+                                )}
+                                {project.liveLink && (
+                                    <a href={project.liveLink} target="_blank" rel="noreferrer" className="github-btn" style={{ background: 'var(--primary-color)', color: '#fff' }}>
+                                        <FaExternalLinkAlt /> Live Demo
+                                    </a>
+                                )}
+                                {project.githubLinks && project.githubLinks.map((link, idx) => (
+                                    <a key={idx} href={link.url} target="_blank" rel="noreferrer" className="github-btn">
+                                        <FaGithub /> {link.label}
+                                    </a>
+                                ))}
+                            </div>
+                        </Card>
+                    </Tilt>
                 ))}
             </div>
         </section>

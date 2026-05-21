@@ -1,6 +1,7 @@
 import React from "react";
 import { FaGraduationCap, FaUniversity, FaSchool } from "react-icons/fa";
 import Card from "../UI/Card";
+import Tilt from "react-parallax-tilt";
 import "./Education.css";
 
 const Education = () => {
@@ -45,20 +46,22 @@ const Education = () => {
             <h2 className="section-title"><FaGraduationCap style={{ marginRight: '10px' }} /> Education</h2>
             <div className="education-container container">
                 {educationData.map((edu, index) => (
-                    <Card key={index} delay={index * 0.2} className="edu-card">
-                        <div className="edu-icon-wrapper">
-                            {edu.icon}
-                        </div>
-                        <div className="edu-content">
-                            <h3>{edu.title}</h3>
-                            <p className="institution"><b>{edu.institution}</b> ({edu.period})</p>
-                            <ul className="edu-details">
-                                {edu.details.map((detail, idx) => (
-                                    <li key={idx}>{detail}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </Card>
+                    <Tilt key={index} tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
+                        <Card delay={index * 0.2} className="edu-card inner-3d-element" style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                            <div className="edu-icon-wrapper">
+                                {edu.icon}
+                            </div>
+                            <div className="edu-content">
+                                <h3>{edu.title}</h3>
+                                <p className="institution"><b>{edu.institution}</b> ({edu.period})</p>
+                                <ul className="edu-details">
+                                    {edu.details.map((detail, idx) => (
+                                        <li key={idx}>{detail}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </Card>
+                    </Tilt>
                 ))}
             </div>
         </section>

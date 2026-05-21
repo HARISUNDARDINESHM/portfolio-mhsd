@@ -1,6 +1,7 @@
 import React from "react";
 import { FaBriefcase, FaLaptop, FaCode, FaServer } from "react-icons/fa";
 import Card from "../UI/Card";
+import Tilt from "react-parallax-tilt";
 import "./Internships.css";
 
 const Internships = () => {
@@ -61,21 +62,23 @@ const Internships = () => {
                 {internships.map((internship, index) => (
                     <div className="timeline-item" key={index}>
                         <div className="timeline-dot"></div>
-                        <Card className="internship-card" delay={index * 0.2}>
-                            <div className="card-icon-small">
-                                {internship.icon}
-                            </div>
-                            <h3>{internship.company}</h3>
-                            <p className="role-period">
-                                <span className="role">{internship.role}</span>
-                                <span className="period">{internship.period}</span>
-                            </p>
-                            <ul className="internship-details">
-                                {internship.details.map((detail, idx) => (
-                                    <li key={idx}>{detail}</li>
-                                ))}
-                            </ul>
-                        </Card>
+                        <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
+                            <Card className="internship-card inner-3d-element" delay={index * 0.2} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                                <div className="card-icon-small">
+                                    {internship.icon}
+                                </div>
+                                <h3>{internship.company}</h3>
+                                <p className="role-period">
+                                    <span className="role">{internship.role}</span>
+                                    <span className="period">{internship.period}</span>
+                                </p>
+                                <ul className="internship-details">
+                                    {internship.details.map((detail, idx) => (
+                                        <li key={idx}>{detail}</li>
+                                    ))}
+                                </ul>
+                            </Card>
+                        </Tilt>
                     </div>
                 ))}
             </div>

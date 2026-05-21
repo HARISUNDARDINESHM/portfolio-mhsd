@@ -95,3 +95,38 @@
 .internship-details li::marker {
     color: var(--primary-color);
 }
+
+@media screen and (max-width: 768px) {
+    .internships-container {
+        padding-left: 10px;
+    }
+    
+    .internships-container::before {
+        left: 10px;
+    }
+    
+    .timeline-item {
+        padding-left: 25px;
+    }
+    
+    .timeline-dot {
+        left: -8px;
+        top: 25px;
+        width: 14px;
+        height: 14px;
+    }
+    
+    .internship-card {
+        padding: 20px;
+    }
+    
+    .card-icon-small {
+        font-size: 1.2rem;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .internship-card h3 {
+        font-size: 1.2rem;
+    }
+}

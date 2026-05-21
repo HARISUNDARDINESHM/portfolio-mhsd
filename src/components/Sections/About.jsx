@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCertificate, FaUser, FaRunning, FaLanguage, FaCheckCircle, FaStar, FaGamepad, FaRocket } from "react-icons/fa";
 import Card from "../UI/Card";
+import Tilt from "react-parallax-tilt";
 import "./About.css";
 
 const About = () => {
@@ -47,46 +48,54 @@ const About = () => {
                 {/* About Content Grid */}
                 <div className="about-grid">
                     {/* Strengths */}
-                    <Card className="about-card" delay={0.2}>
-                        <h3><FaStar /> Personal Strengths</h3>
-                        <div className="tag-cloud">
-                            {strengths.map((strength, index) => (
-                                <span className="tag" key={index}>{strength}</span>
-                            ))}
-                        </div>
-                    </Card>
+                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
+                        <Card className="about-card inner-3d-element" delay={0.2} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                            <h3><FaStar /> Personal Strengths</h3>
+                            <div className="tag-cloud">
+                                {strengths.map((strength, index) => (
+                                    <span className="tag" key={index}>{strength}</span>
+                                ))}
+                            </div>
+                        </Card>
+                    </Tilt>
 
                     {/* Hobbies */}
-                    <Card className="about-card" delay={0.3}>
-                        <h3><FaRunning /> Hobbies</h3>
-                        <div className="tag-cloud">
-                            {hobbies.map((hobby, index) => (
-                                <span className="tag" key={index}>
-                                    {hobby.icon} {hobby.name}
-                                </span>
-                            ))}
-                        </div>
-                    </Card>
+                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
+                        <Card className="about-card inner-3d-element" delay={0.3} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                            <h3><FaRunning /> Hobbies</h3>
+                            <div className="tag-cloud">
+                                {hobbies.map((hobby, index) => (
+                                    <span className="tag" key={index}>
+                                        {hobby.icon} {hobby.name}
+                                    </span>
+                                ))}
+                            </div>
+                        </Card>
+                    </Tilt>
 
                     {/* Achievements */}
-                    <Card className="about-card" delay={0.4}>
-                        <h3><FaCertificate /> Achievements</h3>
-                        <ul style={{ textAlign: "left", paddingLeft: "20px", marginTop: "15px", lineHeight: "1.6" }}>
-                            {achievements.map((achievement, index) => (
-                                <li key={index} style={{ marginBottom: "8px" }}>{achievement}</li>
-                            ))}
-                        </ul>
-                    </Card>
+                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
+                        <Card className="about-card inner-3d-element" delay={0.4} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                            <h3><FaCertificate /> Achievements</h3>
+                            <ul style={{ textAlign: "left", paddingLeft: "20px", marginTop: "15px", lineHeight: "1.6" }}>
+                                {achievements.map((achievement, index) => (
+                                    <li key={index} style={{ marginBottom: "8px" }}>{achievement}</li>
+                                ))}
+                            </ul>
+                        </Card>
+                    </Tilt>
 
                     {/* Languages */}
-                    <Card className="about-card" delay={0.5}>
-                        <h3><FaLanguage /> Languages</h3>
-                        <div className="tag-cloud">
-                            {languages.map((language, index) => (
-                                <span className="tag" key={index}>{language}</span>
-                            ))}
-                        </div>
-                    </Card>
+                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
+                        <Card className="about-card inner-3d-element" delay={0.5} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                            <h3><FaLanguage /> Languages</h3>
+                            <div className="tag-cloud">
+                                {languages.map((language, index) => (
+                                    <span className="tag" key={index}>{language}</span>
+                                ))}
+                            </div>
+                        </Card>
+                    </Tilt>
 
                 </div>
             </div>

@@ -4,6 +4,7 @@ import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp, FaFileAlt } from "react-i
 import img1 from "../../assets/mhsd_image1.jpg";
 import img2 from "../../assets/mhsd_image2.jpg";
 import Button from "../UI/Button";
+import Tilt from "react-parallax-tilt";
 import "./Hero.css";
 
 const Hero = () => {
@@ -48,10 +49,12 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <div className="blob-bg"></div>
-                    <div className="img-wrapper-circle">
-                        <img src={images[currentImg]} alt="Hari profile" className="profile-img" />
-                    </div>
+                    <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.05} transitionSpeed={2000} className="glass-card-3d" style={{ borderRadius: "50%", padding: "10px", display: "inline-block" }}>
+                        <div className="blob-bg inner-3d-element"></div>
+                        <div className="img-wrapper-hex inner-3d-element">
+                            <img src={images[currentImg]} alt="Hari profile" className="profile-img" />
+                        </div>
+                    </Tilt>
                 </motion.div>
             </div>
         </section>
