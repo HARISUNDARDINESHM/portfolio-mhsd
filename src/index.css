@@ -54,8 +54,11 @@
 }
 
 html {
-  background-color: var(--bg-color);
-  min-height: 100vh;
+  background: var(--aurora-gradient);
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  min-height: 100dvh;
 }
 
 #root, .app {
@@ -66,11 +69,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--aurora-gradient);
-  background-attachment: fixed;
-  /* Parallax-like effect */
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  background: transparent;
   color: var(--text-main);
   overflow-x: hidden;
   line-height: 1.6;
@@ -209,6 +208,15 @@ button {
   height: 100%;
   display: flex;
   flex-direction: column;
+  will-change: transform;
+}
+
+@media screen and (max-width: 768px) {
+  .glass-card-3d {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(20, 20, 35, 0.85); /* More opaque since we removed blur */
+  }
 }
 
 .inner-3d-element {

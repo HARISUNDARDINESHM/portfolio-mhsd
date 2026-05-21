@@ -33,8 +33,8 @@ const AnimatedShape = ({ position, color, distort, speed, scale }) => {
 
 const Background3D = () => {
   return (
-    <div style={{ position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, zIndex: -1, pointerEvents: 'none' }}>
-      <Canvas camera={{ position: [0, 0, 8], fov: 75 }}>
+    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh', zIndex: -1, pointerEvents: 'none' }}>
+      <Canvas camera={{ position: [0, 0, 8], fov: 75 }} dpr={[1, 1.5]} performance={{ min: 0.5 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#fd79a8" />
