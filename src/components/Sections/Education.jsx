@@ -12,7 +12,7 @@ const Education = () => {
             period: "2022–2026",
             icon: <FaUniversity />,
             details: [
-                "CGPA: 8.48 (upto 7th sem)",
+                "CGPA: 8.57",
                 "Relevant coursework: Data Structures, Algorithms, Web Development, Database Systems",
                 "Participated in technical workshops and coding competitions"
             ]

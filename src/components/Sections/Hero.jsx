@@ -1,64 +1,159 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp, FaFileAlt } from "react-icons/fa";
-import img1 from "../../assets/mhsd_image1.jpg";
-import img2 from "../../assets/mhsd_image2.jpg";
+import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp, FaChevronDown, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import { Link } from "react-scroll";
 import Button from "../UI/Button";
-import Tilt from "react-parallax-tilt";
 import "./Hero.css";
 
-const Hero = () => {
-    const [currentImg, setCurrentImg] = useState(0);
-    const images = [img1, img2];
+const Hero = ({ startUnmuted = false }) => {
+    const [isMuted, setIsMuted] = useState(!startUnmuted); // unmuted if user clicked loading screen
+    const [userWantsSound, setUserWantsSound] = useState(true);
+    const videoRef = useRef(null);
+
+    const toggleMute = () => {
+        if (videoRef.current) {
+            const nextMuted = !videoRef.current.muted;
+            videoRef.current.muted = nextMuted;
+            setIsMuted(nextMuted);
+            setUserWantsSound(!nextMuted); // Track if user explicitly turned sound ON
+        }
+    };
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImg((prev) => (prev + 1) % images.length);
-        }, 4000);
-        return () => clearInterval(interval);
-    }, [images.length]);
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (startUnmuted) {
+            // User clicked loading screen → real gesture → play unmuted immediately
+            video.muted = false;
+            setIsMuted(false);
+            setUserWantsSound(true);
+            video.play().catch(e => console.error("Hero video play failed:", e));
+            return; // no need to add interaction listeners
+        }
+
+        // No user gesture yet — start muted, unmute on first interaction
+        video.muted = true;
+        setIsMuted(true);
+        setUserWantsSound(true);
+        video.play().catch(e => console.error("Hero video play failed:", e));
+
+        const enableAudio = (event) => {
+            if (event.target.closest('.audio-toggle-btn')) {
+                cleanup();
+                return;
+            }
+            if (video && video.muted) {
+                video.muted = false;
+                setIsMuted(false);
+            }
+            cleanup();
+        };
+
+        const cleanup = () => {
+            window.removeEventListener("click",      enableAudio);
+            window.removeEventListener("touchstart", enableAudio);
+            window.removeEventListener("keydown",    enableAudio);
+        };
+
+        window.addEventListener("click",      enableAudio);
+        window.addEventListener("touchstart", enableAudio);
+        window.addEventListener("keydown",    enableAudio);
+
+        return cleanup;
+    }, [startUnmuted]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (videoRef.current) {
+                if (window.scrollY > 300) {
+                    // Mute sound when scrolled away
+                    videoRef.current.muted = true;
+                    setIsMuted(true);
+                } else {
+                    // Restore sound if user previously unmuted and scrolled back to top
+                    if (userWantsSound) {
+                        videoRef.current.muted = false;
+                        setIsMuted(false);
+                    }
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [userWantsSound]);
 
     return (
-        <section className="hero section" id="home">
+        <section className="hero" id="home">
+            {/* Background Video */}
+            <div className="hero-video-container">
+                <video
+                    ref={videoRef}
+                    className="hero-bg-video"
+                    src="/hari/hari-dev.mp4"
+                    poster="/hari/hari-dev.jpeg"
+                    autoPlay
+                    loop
+                    muted={isMuted}
+                    playsInline
+                />
+                <div className="hero-video-overlay" />
+            </div>
+
             <div className="hero-container container">
                 <motion.div
-                    className="hero-content"
+                    className="hero-left-content"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 1.0, ease: "easeOut" }}
                 >
-                    <span className="hero-subtitle">Welcome to my world</span>
-                    <h1>Hello, I'm <br /><span className="highlight">Hari Sundar Dinesh M</span></h1>
-                    <p>Aspiring Full Stack Developer with hands-on experience building production-grade systems. Contributed to a system recognized by the Kanyakumari SP, now serving 2,000+ police officers. Proficient in React.js, Express.js, MySQL, and JWT-based auth. Passionate about scalable, impactful software.</p>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                    >
+                        Hello, I'm <br />
+                        <span className="highlight">Hari Sundar Dinesh M</span>
+                    </motion.h1>
 
-                    <div className="social-icons">
-                        <a href="https://www.linkedin.com/in/hari-sundar-dinesh-m-00515725a" target="_blank" rel="noreferrer"><FaLinkedin /></a>
-                        <a href="https://github.com/HARISUNDARDINESHM" target="_blank" rel="noreferrer"><FaGithub /></a>
-                        <a href="mailto:sundarharidinesh@gmail.com"><FaEnvelope /></a>
-                        <a href="https://wa.me/919894853160" target="_blank" rel="noreferrer"><FaWhatsapp /></a>
-                    </div>
-
-                    <div className="action-buttons">
-                        <Button variant="primary" onClick={() => window.open('https://drive.google.com/drive/folders/1TwCJuAkaOD8EaPzrAlQgMwS7E0LN91z7', '_blank')}>Download CV</Button>
-                    </div>
-                </motion.div>
-
-                <motion.div
-                    className="hero-image"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                    <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.05} transitionSpeed={2000} className="glass-card-3d" style={{ borderRadius: "50%", padding: "10px", display: "inline-block" }}>
-                        <div className="blob-bg inner-3d-element"></div>
-                        <div className="img-wrapper-hex inner-3d-element">
-                            <img src={images[currentImg]} alt="Hari profile" className="profile-img" />
-                        </div>
-                    </Tilt>
+                    <motion.div
+                        className="social-icons"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.6 }}
+                    >
+                        <a href="https://www.linkedin.com/in/hari-sundar-dinesh-m-00515725a" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
+                        <a href="https://github.com/HARISUNDARDINESHM" target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub /></a>
+                        <a href="mailto:sundarharidinesh@gmail.com" aria-label="Email"><FaEnvelope /></a>
+                        <a href="https://wa.me/919894853160" target="_blank" rel="noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
+                    </motion.div>
                 </motion.div>
             </div>
+
+            {/* Audio Toggle Control */}
+            <button 
+                className="audio-toggle-btn" 
+                onClick={toggleMute}
+                aria-label={isMuted ? "Unmute sound" : "Mute sound"}
+            >
+                {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+            </button>
+
+            {/* Scroll Down Indicator */}
+            <Link to="about" smooth={true} duration={500} offset={-80} className="scroll-indicator">
+                <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                    className="scroll-icon"
+                >
+                    <span className="scroll-text">Scroll Down</span>
+                    <FaChevronDown />
+                </motion.div>
+            </Link>
         </section>
     );
 };
 
 export default Hero;
+

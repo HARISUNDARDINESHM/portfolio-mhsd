@@ -2,6 +2,9 @@ import React from "react";
 import { FaCertificate, FaUser, FaRunning, FaLanguage, FaCheckCircle, FaStar, FaGamepad, FaRocket } from "react-icons/fa";
 import Card from "../UI/Card";
 import Tilt from "react-parallax-tilt";
+import Button from "../UI/Button";
+import { Link } from "react-scroll";
+import { ProfileCanvas } from "../3D/ProfileModel";
 import "./About.css";
 
 const About = () => {
@@ -45,58 +48,96 @@ const About = () => {
             <h2 className="section-title"><FaUser style={{ marginRight: '10px' }} /> About Me</h2>
             <div className="about-container container">
 
-                {/* About Content Grid */}
-                <div className="about-grid">
-                    {/* Strengths */}
-                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
-                        <Card className="about-card inner-3d-element" delay={0.2} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
-                            <h3><FaStar /> Personal Strengths</h3>
-                            <div className="tag-cloud">
-                                {strengths.map((strength, index) => (
-                                    <span className="tag" key={index}>{strength}</span>
-                                ))}
+                {/* Profile Introduction Card next to the video */}
+                <div className="about-intro-wrapper">
+                    <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} transitionSpeed={2000} className="about-intro-tilt">
+                        <div className="about-intro-card">
+                            <div className="about-avatar-wrapper">
+                                <img src="/hari/hari-dev.jpeg" alt="Hari profile" className="about-avatar" />
+                                <div className="avatar-glow"></div>
                             </div>
-                        </Card>
-                    </Tilt>
-
-                    {/* Hobbies */}
-                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
-                        <Card className="about-card inner-3d-element" delay={0.3} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
-                            <h3><FaRunning /> Hobbies</h3>
-                            <div className="tag-cloud">
-                                {hobbies.map((hobby, index) => (
-                                    <span className="tag" key={index}>
-                                        {hobby.icon} {hobby.name}
-                                    </span>
-                                ))}
+                            <div className="about-intro-content">
+                                <span className="about-badge">⚡ Professional Profile</span>
+                                <h3>Aspiring Full Stack Developer</h3>
+                                <p>
+                                    Aspiring Full Stack Developer with hands-on experience building production-grade systems. Contributed to a system recognized by the Kanyakumari SP, now serving 2,000+ police officers. Proficient in React.js, Express.js, MySQL, and JWT-based auth. Passionate about scalable, impactful software.
+                                </p>
+                                <div className="about-actions">
+                                    <Button variant="primary" onClick={() => window.open('https://drive.google.com/drive/folders/1TwCJuAkaOD8EaPzrAlQgMwS7E0LN91z7', '_blank')}>
+                                        Download CV
+                                    </Button>
+                                    <Link to="contact" smooth={true} duration={500} offset={-80}>
+                                        <Button variant="secondary">Get In Touch</Button>
+                                    </Link>
+                                </div>
                             </div>
-                        </Card>
+                        </div>
                     </Tilt>
+                </div>
 
-                    {/* Achievements */}
-                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
-                        <Card className="about-card inner-3d-element" delay={0.4} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
-                            <h3><FaCertificate /> Achievements</h3>
-                            <ul style={{ textAlign: "left", paddingLeft: "20px", marginTop: "15px", lineHeight: "1.6" }}>
-                                {achievements.map((achievement, index) => (
-                                    <li key={index} style={{ marginBottom: "8px" }}>{achievement}</li>
-                                ))}
-                            </ul>
-                        </Card>
-                    </Tilt>
 
-                    {/* Languages */}
-                    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} transitionSpeed={2000} className="glass-card-3d">
-                        <Card className="about-card inner-3d-element" delay={0.5} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
-                            <h3><FaLanguage /> Languages</h3>
-                            <div className="tag-cloud">
-                                {languages.map((language, index) => (
-                                    <span className="tag" key={index}>{language}</span>
-                                ))}
-                            </div>
-                        </Card>
-                    </Tilt>
+                {/* About Dashboard Layout: 3D model on the left, other info on the right */}
+                <div className="about-dashboard">
+                    {/* Left Column: Interactive 3D Profile Model with Pinterest-style decorative rings */}
+                    <div className="dashboard-left">
+                        <div className="profile-canvas-wrapper">
+                            <div className="profile-decor-ring ring-1"></div>
+                            <div className="profile-decor-ring ring-2"></div>
+                            <ProfileCanvas />
+                        </div>
+                    </div>
 
+                    {/* Right Column: Outline Cards (Strengths, Achievements, Hobbies, Languages) */}
+                    <div className="dashboard-right">
+                        <Tilt tiltMaxAngleX={8} tiltMaxAngleY={8} transitionSpeed={2000} className="glass-card-3d card-purple float-slow">
+                            <Card className="about-card inner-3d-element" delay={0.2} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                                <h3><FaStar /> Personal Strengths</h3>
+                                <div className="tag-cloud">
+                                    {strengths.map((strength, index) => (
+                                        <span className="tag" key={index}>{strength}</span>
+                                    ))}
+                                </div>
+                            </Card>
+                        </Tilt>
+
+                        <Tilt tiltMaxAngleX={8} tiltMaxAngleY={8} transitionSpeed={2000} className="glass-card-3d card-gold float-fast">
+                            <Card className="about-card inner-3d-element" delay={0.3} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                                <h3><FaCertificate /> Achievements</h3>
+                                <ul className="achievement-list">
+                                    {achievements.map((achievement, index) => (
+                                        <li key={index} className="achievement-item">
+                                            <FaCheckCircle className="achieve-check" />
+                                            <span>{achievement}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Card>
+                        </Tilt>
+
+                        <Tilt tiltMaxAngleX={8} tiltMaxAngleY={8} transitionSpeed={2000} className="glass-card-3d card-pink float-delay">
+                            <Card className="about-card inner-3d-element" delay={0.4} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                                <h3><FaRunning /> Hobbies</h3>
+                                <div className="tag-cloud">
+                                    {hobbies.map((hobby, index) => (
+                                        <span className="tag" key={index}>
+                                            {hobby.icon} {hobby.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            </Card>
+                        </Tilt>
+
+                        <Tilt tiltMaxAngleX={8} tiltMaxAngleY={8} transitionSpeed={2000} className="glass-card-3d card-cyan float-medium">
+                            <Card className="about-card inner-3d-element" delay={0.5} style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+                                <h3><FaLanguage /> Languages</h3>
+                                <div className="tag-cloud">
+                                    {languages.map((language, index) => (
+                                        <span className="tag" key={index}>{language}</span>
+                                    ))}
+                                </div>
+                            </Card>
+                        </Tilt>
+                    </div>
                 </div>
             </div>
         </section>

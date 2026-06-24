@@ -1,0 +1,211 @@
+/* Full-screen loading overlay */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #050816;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Animated background orbs */
+.loading-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: orbPulse 3s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.loading-orb-1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(108, 92, 231, 0.35) 0%, transparent 70%);
+    top: -120px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.loading-orb-2 {
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(0, 206, 201, 0.25) 0%, transparent 70%);
+    bottom: -80px;
+    right: -80px;
+    animation-delay: 0.8s;
+}
+
+.loading-orb-3 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(253, 121, 168, 0.2) 0%, transparent 70%);
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 1.4s;
+}
+
+@keyframes orbPulse {
+    from { transform: scale(1) translateY(0); opacity: 0.6; }
+    to   { transform: scale(1.15) translateY(-20px); opacity: 1; }
+}
+
+/* Center content */
+.loading-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+/* Big logo */
+.loading-logo {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 50%, #84fab0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
+    line-height: 1;
+    filter: drop-shadow(0 0 40px rgba(108, 92, 231, 0.5));
+    animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    from { filter: drop-shadow(0 0 20px rgba(108, 92, 231, 0.4)); }
+    to   { filter: drop-shadow(0 0 50px rgba(161, 140, 209, 0.8)); }
+}
+
+.loading-dot {
+    color: #00cec9;
+    -webkit-text-fill-color: #00cec9;
+}
+
+/* Tagline */
+.loading-tagline {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(170, 166, 195, 0.85);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Progress bar */
+.loading-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 260px;
+    margin-top: 12px;
+}
+
+.loading-bar-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6c5ce7, #00cec9, #fd79a8);
+    border-radius: 999px;
+    transition: width 0.05s linear;
+    box-shadow: 0 0 12px rgba(108, 92, 231, 0.7);
+    position: relative;
+}
+
+/* Shimmer on the bar */
+.loading-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: shimmer 0.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%   { transform: translateX(-40px); opacity: 0; }
+    50%  { opacity: 1; }
+    100% { transform: translateX(20px); opacity: 0; }
+}
+
+.loading-percent {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 2px;
+}
+
+/* Click-to-unmute hint */
+.loading-hint {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 6px;
+    pointer-events: none;
+    font-family: var(--font-body);
+}
+
+/* Enter Portfolio button */
+.loading-enter-btn {
+    position: relative;
+    margin-top: 24px;
+    padding: 14px 36px;
+    border-radius: 50px;
+    border: 1px solid rgba(108, 92, 231, 0.5);
+    background: rgba(108, 92, 231, 0.15);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(108, 92, 231, 0.25);
+}
+
+.loading-enter-btn:hover {
+    background: rgba(108, 92, 231, 0.35);
+    border-color: rgba(108, 92, 231, 0.9);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 50px rgba(108, 92, 231, 0.5), 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.loading-enter-btn:active {
+    transform: scale(0.98);
+}
+
+/* Animated pulse glow behind button */
+.enter-btn-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(108,92,231,0.2), rgba(0,206,201,0.15));
+    animation: btnGlowPulse 2s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes btnGlowPulse {
+    from { opacity: 0.4; }
+    to   { opacity: 1; }
+}
