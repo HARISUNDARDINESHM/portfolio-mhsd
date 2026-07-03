@@ -4,8 +4,8 @@ import "./Contact.css";
 
 const Contact = () => {
     const thankyouVideoRef  = useRef(null);
-    const isMutedRef        = useRef(true);   // source of truth — no re-renders
-    const [isThankYouMuted, setIsThankYouMuted] = useState(true); // only for icon update
+    const isMutedRef        = useRef(false);   // start unmuted initially
+    const [isThankYouMuted, setIsThankYouMuted] = useState(false); // start unmuted initially
 
     const toggleThankYouMute = () => {
         const video = thankyouVideoRef.current;
