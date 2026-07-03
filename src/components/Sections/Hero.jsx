@@ -5,6 +5,105 @@ import { Link } from "react-scroll";
 import Button from "../UI/Button";
 import "./Hero.css";
 
+const NameAnimator = () => {
+    const [animationStage, setAnimationStage] = useState(0); // 0: MHSD, 1: HSDM (shift), 2: expand
+    const [step, setStep] = useState(0); // expansion step (0 to 13)
+
+    // Stage 0 -> Stage 1: Shift M to the end after 1.2 seconds
+    useEffect(() => {
+        const timer1 = setTimeout(() => {
+            setAnimationStage(1);
+        }, 1200);
+        return () => clearTimeout(timer1);
+    }, []);
+
+    // Stage 1 -> Stage 2: Start progressive letter insertion after layout slide animation completes (~2.2 seconds total)
+    useEffect(() => {
+        const timer2 = setTimeout(() => {
+            setAnimationStage(2);
+        }, 2200);
+        return () => clearTimeout(timer2);
+    }, []);
+
+    // Stage 2: progressive step increment
+    useEffect(() => {
+        if (animationStage !== 2) return;
+        const interval = setInterval(() => {
+            setStep((prev) => {
+                if (prev >= 13) {
+                    clearInterval(interval);
+                    return prev;
+                }
+                return prev + 1;
+            });
+        }, 120); // speed of typing expansion
+        return () => clearInterval(interval);
+    }, [animationStage]);
+
+    // Stage 0: ordered M, H, S, D
+    const stage0Items = [
+        { id: 'M', char: 'M' },
+        { id: 'H', char: 'H' },
+        { id: 'S', char: 'S' },
+        { id: 'D', char: 'D' }
+    ];
+
+    // Stage 1: ordered H, S, D, M (triggers layout shifting)
+    const stage1Items = [
+        { id: 'H', char: 'H' },
+        { id: 'S', char: 'S' },
+        { id: 'D', char: 'D' },
+        { id: 'M', char: 'M' }
+    ];
+
+    // Helper to resolve the string dynamically at each step of expansion
+    const getAnimatedName = (currentStep) => {
+        const hLetters = ["", "a", "ar", "ari"];
+        const sLetters = ["", "u", "un", "und", "unda", "undar"];
+        const dLetters = ["", "i", "in", "ine", "ines", "inesh"];
+        
+        let hPart = "H" + hLetters[Math.min(currentStep, hLetters.length - 1)];
+        let sPart = "S";
+        let dPart = "D";
+        
+        let stepRemaining = currentStep - (hLetters.length - 1);
+        if (stepRemaining > 0) {
+            sPart = "S" + sLetters[Math.min(stepRemaining, sLetters.length - 1)];
+            stepRemaining = stepRemaining - (sLetters.length - 1);
+        }
+        if (stepRemaining > 0) {
+            dPart = "D" + dLetters[Math.min(stepRemaining, dLetters.length - 1)];
+        }
+        
+        return `${hPart} ${sPart} ${dPart} M`;
+    };
+
+    if (animationStage < 2) {
+        const currentItems = animationStage === 0 ? stage0Items : stage1Items;
+        return (
+            <span className="name-animator-layout" style={{ display: 'inline-flex', gap: '0.4rem' }}>
+                {currentItems.map((item) => (
+                    <motion.span
+                        key={item.id}
+                        layout
+                        transition={{ type: 'spring', stiffness: 120, damping: 18 }}
+                        style={{ display: 'inline-block' }}
+                    >
+                        {item.char}
+                    </motion.span>
+                ))}
+            </span>
+        );
+    }
+
+    // Stage 2: Typing expansion HSDM -> Hari Sundar Dinesh M
+    return (
+        <span className="name-animator-typing">
+            {getAnimatedName(step)}
+        </span>
+    );
+};
+
 const Hero = ({ startUnmuted = false }) => {
     const [isMuted, setIsMuted] = useState(!startUnmuted); // unmuted if user clicked loading screen
     const [userWantsSound, setUserWantsSound] = useState(true);
@@ -114,7 +213,9 @@ const Hero = ({ startUnmuted = false }) => {
                         transition={{ delay: 0.3, duration: 0.8 }}
                     >
                         Hello, I'm <br />
-                        <span className="highlight">Hari Sundar Dinesh M</span>
+                        <span className="highlight">
+                            <NameAnimator />
+                        </span>
                     </motion.h1>
 
                     <motion.div
