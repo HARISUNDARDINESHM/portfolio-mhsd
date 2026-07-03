@@ -217,6 +217,10 @@
     margin-bottom: 10px;
 }
 
+.short-card-header > div {
+    min-width: 0;
+}
+
 .short-card-icon {
     font-size: 1.1rem;
     color: var(--secondary-color);
@@ -235,6 +239,8 @@
     margin-bottom: 1px;
     font-weight: 700;
     line-height: 1.3;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .short-card-role {
@@ -303,6 +309,10 @@
     gap: 20px;
 }
 
+.large-card-header > div {
+    min-width: 0;
+}
+
 .large-card-icon {
     font-size: 2.2rem;
     color: var(--primary-color);
@@ -319,6 +329,8 @@
     color: var(--text-main);
     margin-bottom: 5px;
     font-weight: 700;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .role-period {
@@ -434,4 +446,21 @@
         flex-direction: column;
         gap: 5px;
     }
+}
+
+/* Mobile Section Overrides to show normal flowing cards */
+.internships-mobile-section .internships-grid {
+    grid-template-columns: 1fr !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    gap: 20px !important;
+}
+
+.internships-mobile-section .internships-wrapper {
+    max-height: none !important;
+}
+
+.internships-mobile-section .internship-large-card {
+    max-height: none !important;
+    overflow-y: visible !important;
 }

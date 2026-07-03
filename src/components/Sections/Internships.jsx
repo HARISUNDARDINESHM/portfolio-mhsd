@@ -8,6 +8,17 @@ const Internships = () => {
     const sectionRef = useRef(null);
     const [frame, setFrame] = useState(1);
     const [selectedInternship, setSelectedInternship] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect screen size to disable frame scroll animations on mobile
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     // Scroll tracking for frame animation
     const { scrollYProgress } = useScroll({
@@ -16,6 +27,7 @@ const Internships = () => {
     });
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        if (isMobile) return;
         // Map 0 -> 0.85 progress to 1 -> 40 frames
         // Keeping it at frame 40 from 0.85 to 1.0 to show the details on the white screen
         const animProgress = Math.min(1, latest / 0.85);
@@ -23,13 +35,14 @@ const Internships = () => {
         setFrame(frameIndex);
     });
 
-    // Preload frame images for smooth rendering
+    // Preload frame images for smooth rendering (only on non-mobile)
     useEffect(() => {
+        if (isMobile) return;
         for (let i = 1; i <= 40; i++) {
             const img = new Image();
             img.src = `/intern-frames/ezgif-frame-${String(i).padStart(3, '0')}.png`;
         }
-    }, []);
+    }, [isMobile]);
 
     const internships = [
         {
@@ -86,6 +99,95 @@ const Internships = () => {
     ];
 
     const currentFramePath = `/intern-frames/ezgif-frame-${String(frame).padStart(3, '0')}.png`;
+
+    // Mobile layout: render standard section without frames
+    if (isMobile) {
+        return (
+            <section className="section internships-mobile-section" id="internships">
+                <div className="container">
+                    <h2 className="section-title">
+                        <FaBriefcase style={{ marginRight: '10px' }} /> Internships
+                    </h2>
+                    <div className="internships-wrapper" style={{ width: '100%', maxWidth: '100%', maxHeight: 'none' }}>
+                        <AnimatePresence mode="wait">
+                            {selectedInternship === null ? (
+                                <motion.div 
+                                    key="grid"
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="internships-grid"
+                                >
+                                    {internships.map((internship, index) => (
+                                        <div 
+                                            className="internship-short-card-wrapper" 
+                                            key={index}
+                                            onClick={() => setSelectedInternship(index)}
+                                        >
+                                            <Card className="internship-short-card">
+                                                <div className="short-card-header">
+                                                    <div className="short-card-icon">{internship.icon}</div>
+                                                    <div>
+                                                        <h3>{internship.company}</h3>
+                                                        <p className="short-card-role">{internship.role}</p>
+                                                    </div>
+                                                </div>
+                                                <p className="short-desc">{internship.shortDesc}</p>
+                                                <button className="see-details-btn">
+                                                    See Details <FaChevronRight style={{ fontSize: '0.8rem' }} />
+                                                </button>
+                                            </Card>
+                                        </div>
+                                    ))}
+                                </motion.div>
+                            ) : (
+                                <motion.div 
+                                    key="details"
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="internship-detail-view"
+                                >
+                                    <Card className="internship-large-card">
+                                        <div className="large-card-header">
+                                            <div className="large-card-icon">
+                                                {internships[selectedInternship].icon}
+                                            </div>
+                                            <div>
+                                                <h3>{internships[selectedInternship].company}</h3>
+                                                <p className="role-period">
+                                                    <span className="role">{internships[selectedInternship].role}</span>
+                                                    <span className="period">{internships[selectedInternship].period}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        <ul className="internship-details-list">
+                                            {internships[selectedInternship].details.map((detail, idx) => (
+                                                <li key={idx}>{detail}</li>
+                                            ))}
+                                        </ul>
+                                        
+                                        <button 
+                                            className="show-less-btn" 
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setSelectedInternship(null);
+                                            }}
+                                        >
+                                            <FaChevronUp /> Show Less
+                                        </button>
+                                    </Card>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <div ref={sectionRef} className="internships-scroll-section" id="internships">
